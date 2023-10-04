@@ -5,7 +5,8 @@ import { Keyboard } from './components/Keyboard.tsx'
 import styles from './App.module.css'
 
 const App = () => {
-  const [wordToGuess, setWordToGuess] = useState("test")
+  const initialGuessWord = "test"
+  const [wordToGuess, setWordToGuess] = useState(initialGuessWord)
   const [guessedLetters, setGuessedLetters] = useState<string[]>([])
 
   const incorrectLetters = guessedLetters.filter(letter => !wordToGuess.includes(letter))
@@ -29,7 +30,7 @@ const App = () => {
       // Restart the game on "Enter key press"
       if ((isLoser || isWinner) && key == "Enter") {
         setGuessedLetters([])
-        setWordToGuess("test")
+        setWordToGuess(initialGuessWord)
         return
       }
 
