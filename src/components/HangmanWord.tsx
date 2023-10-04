@@ -1,3 +1,5 @@
+import styles from './HangmanWord.module.css'
+
 type HangmanDrawingProps = {
   reveal?: boolean
   guessedLetters: string[]
@@ -6,16 +8,9 @@ type HangmanDrawingProps = {
 
 export const HangmanWord = ({ reveal = false, guessedLetters, wordToGuess }: HangmanDrawingProps) => {
   return (
-    <div style={{ 
-      display: "flex", 
-      gap: ".25em", 
-      fontSize: "6rem", 
-      fontWeight: "bold",
-      textTransform: "uppercase",
-      fontFamily: "monospace"
-    }}>
+    <div className={styles.wordContainer}>
       {wordToGuess.split("").map((letter, i) => (
-        <span style={{ borderBottom: ".1em solid black" }} key={i}>
+        <span className={styles.letter} key={i}>
           <span style={{ 
             visibility: guessedLetters.includes(letter) || reveal ? "visible" : "hidden",
             color: !guessedLetters.includes(letter) && reveal ? "red" : "black" 
