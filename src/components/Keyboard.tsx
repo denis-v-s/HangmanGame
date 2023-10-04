@@ -22,11 +22,13 @@ export const Keyboard = ({ disabled = false, activeLetters, inactiveLetters, add
       {keys.map(key => {
         const isActive = activeLetters.includes(key)
         const isInactive = inactiveLetters.includes(key)
+        const activeStyle = isActive ? styles.active : ""
+        const inactiveStyle = isInactive ? styles.inactive : ""
         return (
           <button 
             key={key}
             onClick={() => addGuessedLetter(key)}
-            className={`${styles.btn} ${isActive ? styles.active : ""} ${isInactive ? styles.inactive : ""}`}
+            className={`${styles.btn} ${activeStyle} ${inactiveStyle}`}
             disabled={isInactive || isActive || disabled}
           >
             {key}
