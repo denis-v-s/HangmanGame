@@ -25,9 +25,18 @@ const App = () => {
   useEffect(() => {
     const handler = (e: KeyboardEvent) => {
       const key = e.key
+      // Restart the game on "Enter key press"
+      if ((isLoser || isWinner) && key == "Enter") {
+        setGuessedLetters([])
+        setWordToGuess("test")
+        return
+      }
+
+      // Ignore anything that isn't an a-z letter
       if (!key.match(/^[a-z]$/)) {
         return
       }
+      
       e.preventDefault()
       addGuessedLetter(key)
     }
@@ -36,21 +45,6 @@ const App = () => {
       document.removeEventListener("keypress", handler)
     }
   }, [guessedLetters])
-
-  useEffect(() => {
-    const handler = (e: KeyboardEvent) => {
-      const key = e.key
-      if (key !== "Enter") {
-        return
-      }
-      setGuessedLetters([])
-      setWordToGuess("test")
-    }
-    document.addEventListener("keypress", handler)
-    return () => {
-      document.removeEventListener("keypress", handler)
-    }
-  })
 
   return (
     <div style={{
