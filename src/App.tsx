@@ -2,6 +2,7 @@ import { useCallback, useEffect, useState } from 'react'
 import { HangmanDrawing } from './components/HangmanDrawing.tsx'
 import { HangmanWord } from "./components/HangmanWord.tsx"
 import { Keyboard } from './components/Keyboard.tsx'
+import styles from './App.module.css'
 
 const App = () => {
   const [wordToGuess, setWordToGuess] = useState("test")
@@ -36,7 +37,7 @@ const App = () => {
       if (!key.match(/^[a-z]$/)) {
         return
       }
-      
+
       e.preventDefault()
       addGuessedLetter(key)
     }
@@ -47,15 +48,8 @@ const App = () => {
   }, [guessedLetters])
 
   return (
-    <div style={{
-      maxWidth: "800px",
-      display: "flex",
-      flexDirection: "column",
-      gap: "2rem",
-      margin: "0 auto",
-      alignItems: "center"
-    }}>
-      <div style={{ fontSize: "2rem", textAlign: "center" }}>
+    <div className={styles.container}>
+      <div className={styles.messageText}>
         {isWinner && "Winner! Refresh to try again"}
         {isLoser && "You Lost. Refresh to try again"}
       </div>
