@@ -14,11 +14,7 @@ type KeyboardProps = {
 
 export const Keyboard = ({ disabled = false, activeLetters, inactiveLetters, addGuessedLetter }: KeyboardProps) => {
   return (
-    <div style={{ 
-      display: "grid",
-      gridTemplateColumns: "repeat(auto-fit, minmax(75px, 1fr))",
-      gap: ".5rem"
-    }}>
+    <div className={styles.keyboardContainer}>
       {keys.map(key => {
         const isActive = activeLetters.includes(key)
         const isInactive = inactiveLetters.includes(key)
@@ -37,5 +33,4 @@ export const Keyboard = ({ disabled = false, activeLetters, inactiveLetters, add
       })}
     </div>
   )
-
 }
